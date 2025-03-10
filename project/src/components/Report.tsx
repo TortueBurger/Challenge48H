@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Download, ArrowLeft } from 'lucide-react';
 import { generatePDF } from '../services/pdf';
 
 function Report() {
   const navigate = useNavigate();
-  const scanResults = JSON.parse(sessionStorage.getItem('scanResults') || '{}');
+  const [scanResults, setScanResults] = useState<any>(null);
 
-  if (!scanResults.scan_time) {
-    navigate('/');
-    return null;
+  useEffect(() => {
+    const storedResults = sessionStorage.getItem('scanResults');
+    if (storedResults) {
+      const parsedResults = JSON.parse(storedResults);
+      console.log("Données récupérées dans Report :", parsedResults); // 🔍 Vérification
+      setScanResults(parsedResults);
+    } else {
+      navigate('/');
+    }
+  }, [navigate]);
+
+  if (!scanResults) {
+    return <p className="text-gray-400 text-center">Chargement des résultats...</p>;
   }
 
   const handleDownload = () => {
@@ -52,7 +62,7 @@ function Report() {
           )}
         </div>
 
-        {scanResults.vulnerabilities && scanResults.vulnerabilities.length > 0 && (
+        {scanResults.vulnerabilities?.length > 0 ? (
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-red-400">Vulnerabilities</h3>
             <div className="space-y-4">
@@ -60,29 +70,12 @@ function Report() {
                 <div key={index} className="bg-red-900/20 border border-red-900/50 rounded-lg p-4">
                   <h4 className="font-semibold">{vuln.title}</h4>
                   <p className="text-sm text-gray-400">{vuln.description}</p>
-                  {vuln.references && (
-                    <div className="mt-2">
-                      <p className="text-sm font-semibold">References:</p>
-                      <ul className="list-disc list-inside text-sm text-gray-400">
-                        {Object.entries(vuln.references).map(([key, value]: [string, any]) => (
-                          <li key={key}>
-                            <a
-                              href={Array.isArray(value) ? value[0] : value}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-blue-400 hover:underline"
-                            >
-                              {key}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
           </div>
+        ) : (
+          <p className="text-gray-400">Aucune vulnérabilité détectée.</p>
         )}
       </div>
     </div>

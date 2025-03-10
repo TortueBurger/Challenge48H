@@ -19,8 +19,17 @@ function URLInput() {
     setLoading(true);
     try {
       const data = await scanWebsite(url);
-      // Store the scan results in sessionStorage
+      console.log("Données reçues du scan :", data);  // 🔍 Vérifier la réponse du scan
+
+      // Vérification avant stockage
+      if (!data || Object.keys(data).length === 0) {
+        throw new Error("Scan failed, no data received.");
+      }
+
+      // Stocker les résultats dans sessionStorage
       sessionStorage.setItem('scanResults', JSON.stringify(data));
+      console.log("Données stockées dans sessionStorage :", sessionStorage.getItem('scanResults'));
+
       navigate('/report');
     } catch (error: any) {
       toast.error(error.message || 'Failed to scan website. Please try again.');
@@ -44,9 +53,8 @@ function URLInput() {
         <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 flex items-start space-x-3">
           <Info className="w-5 h-5 text-blue-400 flex-shrink-0 mt-1" />
           <div className="text-sm text-gray-300">
-            <p className="font-medium text-blue-400">Local WP Support</p>
-            <p>For Local WP sites, you can enter your site's URL (e.g., https://your-site.local). 
-            Make sure SSL is enabled in Local WP for best results.</p>
+            <p className="font-medium text-blue-400">Site Scan Support</p>
+            <p>A utility to scan your site, you can enter your site's URL (e.g., https://your-site.com).</p>
           </div>
         </div>
 

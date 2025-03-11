@@ -1,7 +1,7 @@
 # 🛡️ WordPress Security Scanner
 
 ## 📌 Description
-Ce projet est un **scanner de sécurité pour WordPress** développé en **TypeScript**. Il permet d’analyser un site WordPress et de détecter ses vulnérabilités en fonction des versions de WordPress, PHP, Nginx et de la base de données.
+Ce projet est un **scanner de sécurité pour WordPress** développé en **TypeScript**. Il permet d’analyser un site WordPress et de détecter ses vulnérabilités en fonction des versions de WordPress.
 
 ---
 
@@ -11,8 +11,7 @@ Ce projet est un **scanner de sécurité pour WordPress** développé en **TypeS
 ✅ Comparaison avec les dernières mises à jour disponibles  
 ✅ Recherche des vulnérabilités (CVEs) via une base de données de sécurité  
 ✅ Affichage des résultats sur une interface web stylisée  
-✅ Génération et envoi automatique d’un **rapport d’audit** par email  
-✅ **(Optionnel)** Automatisation avec un **cron job**  
+✅ Génération et envoi automatique d’un **rapport d’audit** par email   
 
 ---
 
@@ -47,4 +46,7 @@ Ce projet est un **scanner de sécurité pour WordPress** développé en **TypeS
 
 </pre>
 
+##Installation et initialisation
+
+Installation nécessaire: nodejs, "npm install" dans le terminal du projet et ensuite "npm run dev" pour lancer le serveur 
 

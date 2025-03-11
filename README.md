@@ -17,8 +17,8 @@ Ce projet est un **scanner de sécurité pour WordPress** développé en **TypeS
 ---
 
 ## 📂 Structure du projet
-
-project/
+<pre>
+  project/
 ├── src/
 │   ├── components/
 │   │   ├── Report.tsx
@@ -44,3 +44,7 @@ project/
 ├── tsconfig.json
 ├── tsconfig.node.json
 └── vite.config.ts
+
+</pre>
+
+

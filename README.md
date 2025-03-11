@@ -19,23 +19,29 @@ Ce projet est un **scanner de sécurité pour WordPress** développé en **TypeS
 ## 📂 Structure du projet
 
 /project
+
   ├── .idea/
   ├── node_modules/
+  
   ├── public/
   │   ├── favicon.ico
   │   ├── logo.png
+  
   ├── src/
   │   ├── components/
   │   │   ├── Report.tsx
   │   │   ├── URLInput.tsx
+  
   │   ├── pages/
   │   │   ├── Home.tsx
   │   │   ├── Scan.tsx
   │   │   ├── Report.tsx
+  
   │   ├── services/
   │   │   ├── accueil.ts
   │   │   ├── pdf.ts
   │   │   ├── wpscan.ts
+  
   │   ├── styles/
   │   │   ├── index.css
   │   │   ├── tailwind.css

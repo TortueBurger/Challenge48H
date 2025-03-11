@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_TOKEN = 'vsa95NZcmeWQr8xJcbIf2rqJWvy2okBwB6SPYka2Tfk'; // Votre token
+const API_TOKEN = 'i1KYtsLdYQUX55C5ZTU3i6zUTa61c0xNizE5odNyTlgvsa95NZcmeWQr8xJcbIf2rqJWvy2okBwB6SPYka2Tfki1KYtsLdYQUX55C5ZTU3i6zUTa61c0xNizE5odNyTlg'; // Votre token
 
 // Helper function to validate Local WP URL
 function isLocalWPUrl(url: string): boolean {
@@ -46,7 +46,7 @@ export async function scanWebsite(url: string) {
     });
     console.log('Réponse de l\'API pour WordPress version', wordpressVersion, ':', response.data);
     return response.data;
-  } catch (error) {
+  } catch (error: any) {
     if (error.response) {
       console.error('Erreur de l\'API WPScan:', error.response.status, error.response.data);
       throw new Error(`Erreur ${error.response.status}: ${JSON.stringify(error.response.data)}`);

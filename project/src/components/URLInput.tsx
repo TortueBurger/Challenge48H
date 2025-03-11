@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Loader2, Info } from 'lucide-react';
+import { Search, Loader2, Info, FileText } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { scanWebsite } from '../services/wpscan';
 
 function URLInput() {
   const [url, setUrl] = useState('');
@@ -16,23 +15,46 @@ function URLInput() {
       return;
     }
 
+    console.log("🔍 URL soumise :", url); // Vérification
     setLoading(true);
-    try {
-      const data = await scanWebsite(url);
-      console.log("Données reçues du scan :", data);  // 🔍 Vérifier la réponse du scan
 
-      // Vérification avant stockage
-      if (!data || Object.keys(data).length === 0) {
-        throw new Error("Scan failed, no data received.");
+    try {
+      const response = await fetch('http://localhost:3001/scan', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to scan website');
       }
 
-      // Stocker les résultats dans sessionStorage
-      sessionStorage.setItem('scanResults', JSON.stringify(data));
-      console.log("Données stockées dans sessionStorage :", sessionStorage.getItem('scanResults'));
-
-      navigate('/report');
+      const reportUrl = await response.url;
+      window.open(reportUrl, '_blank');
     } catch (error: any) {
+      console.error("❌ Erreur du scan :", error);
       toast.error(error.message || 'Failed to scan website. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGeneratePDF = async () => {
+    const storedResults = sessionStorage.getItem('scanResults');
+    if (!storedResults) {
+      toast.error('No scan results found. Please scan a website first.');
+      return;
+    }
+
+    const scanResults = JSON.parse(storedResults);
+    setLoading(true);
+    try {
+      generatePDF(scanResults);
+    } catch (error: any) {
+      console.error("❌ Erreur de génération du PDF :", error);
+      toast.error(error.message || 'Failed to generate PDF. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -85,6 +107,21 @@ function URLInput() {
             )}
           </button>
         </form>
+
+        <button
+          onClick={handleGeneratePDF}
+          disabled={loading}
+          className="w-full flex items-center justify-center px-4 py-3 bg-gradient-to-r from-emerald-500 to-blue-500 text-white rounded-lg hover:from-emerald-600 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+        >
+          {loading ? (
+            <Loader2 className="w-5 h-5 animate-spin" />
+          ) : (
+            <>
+              <FileText className="w-5 h-5 mr-2" />
+              Generate PDF
+            </>
+          )}
+        </button>
       </div>
     </div>
   );

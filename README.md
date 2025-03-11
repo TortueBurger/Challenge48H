@@ -2,7 +2,11 @@
 
 ## 📌 Description
 Ce projet est un **scanner de sécurité pour WordPress** développé en **TypeScript**. Il permet d’analyser un site WordPress et de détecter ses vulnérabilités en fonction des versions de WordPress.
+---
 
+## 💻📥 Installation et initialisation
+
+Installation nécessaire: nodejs, tapez "npm install" dans le terminal du projet et ensuite "npm run dev" dans le terminal du projet également pour lancer le serveur. 
 ---
 
 ## 🚀 Fonctionnalités
@@ -12,7 +16,6 @@ Ce projet est un **scanner de sécurité pour WordPress** développé en **TypeS
 ✅ Recherche des vulnérabilités (CVEs) via une base de données de sécurité  
 ✅ Affichage des résultats sur une interface web stylisée  
 ✅ Génération et envoi automatique d’un **rapport d’audit** par email   
-
 ---
 
 ## 📂 Structure du projet
@@ -45,6 +48,8 @@ Ce projet est un **scanner de sécurité pour WordPress** développé en **TypeS
 └── vite.config.ts
 
 </pre>
+
+---
 
 ##Installation et initialisation
 

@@ -18,45 +18,29 @@ Ce projet est un **scanner de sécurité pour WordPress** développé en **TypeS
 
 ## 📂 Structure du projet
 
-/project
-
-  ├── .idea/
-  ├── node_modules/
-  
-  ├── public/
-  │   ├── favicon.ico
-  │   ├── logo.png
-  
-  ├── src/
-  │   ├── components/
-  │   │   ├── Report.tsx
-  │   │   ├── URLInput.tsx
-  
-  │   ├── pages/
-  │   │   ├── Home.tsx
-  │   │   ├── Scan.tsx
-  │   │   ├── Report.tsx
-  
-  │   ├── services/
-  │   │   ├── accueil.ts
-  │   │   ├── pdf.ts
-  │   │   ├── wpscan.ts
-  
-  │   ├── styles/
-  │   │   ├── index.css
-  │   │   ├── tailwind.css
-  │   ├── App.tsx
-  │   ├── main.tsx
-  │   ├── vite-env.d.ts
-  ├── .env
-  ├── .gitignore
-  ├── index.html
-  ├── package.json
-  ├── package-lock.json
-  ├── eslint.config.js
-  ├── postcss.config.js
-  ├── tailwind.config.js
-  ├── tsconfig.app.json
-  ├── tsconfig.json
-  ├── tsconfig.node.json
-  ├── vite.config.ts
+project/
+├── src/
+│   ├── components/
+│   │   ├── Report.tsx
+│   │   └── URLInput.tsx
+│   ├── services/
+│   │   ├── accueil.ts
+│   │   ├── pdfts.ts
+│   │   └── wpscan.ts
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── node_modules/
+├── .env
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
